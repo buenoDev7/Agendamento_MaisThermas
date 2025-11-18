@@ -33,15 +33,12 @@ body {
 
     a:hover {
         color: #ffffff !important;
+        transform: translateX(-3px);
         filter: drop-shadow(4px 5px 6px #e3e3e3);
     }
-
+    
     li {
         transition: all 250ms ease;
-    }
-
-    li:hover {
-        transform: translateX(-3px);
     }
 }
 
