@@ -10,6 +10,11 @@ connection.authenticate({ alter: true }).then(() => {
     console.error(`\n❌ Erro ao conectar com o Banco de Dados: [${error}]}`);
 });
 
+// > BodyParser
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 // EJS
 app.use(express.static('public'));
 app.set('view engine', 'ejs');

@@ -20,7 +20,9 @@ const Agendamento = connection.define('agendamento', {
         type: Sequelize.DATEONLY,
         allowNull: false,
         validate: {
-            msg: 'O campo "data" não pode ser vazio!'
+            notEmpty: {
+                msg: 'O campo "data" não pode ser vazio!'
+            }
         }
     },
 
