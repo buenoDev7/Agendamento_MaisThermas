@@ -1,0 +1,150 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-image: url('../img/wpp_ficha2.webp');
+    background-position: center;
+    background-size: contain;
+    backdrop-filter: blur(8px) brightness(.2);
+    overflow-y: hidden;
+}
+
+.mainCard {
+    height: 100%;
+    max-width: 500px;
+    padding: 50px 0px 50px 0px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ff-noto {
+    font-family: "Noto Sans", sans-serif;
+}
+
+.ff-sora {
+    font-family: "Sora", sans-serif;
+}
+
+.conviteYan {
+    height: 100vh;
+    max-width: 500px;
+    background: linear-gradient(0deg, rgba(8, 13, 14, 1) 0%, rgba(9, 27, 33, 1) 39%, rgba(6, 57, 74, 1) 100%);
+    padding: 50px 0px 50px 0px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+
+    .nomes {
+        filter: drop-shadow(3px 2px 2px #000);
+        font-size: 22px;
+    }
+
+    .local,
+    .data,
+    .promotor {
+        font-family: "Noto Sans", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #e3e3e3;
+        filter: drop-shadow(3px 2px 2px #000);
+    }
+}
+
+.header {
+    font-family: "Chau Philomene One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #ffbf00;
+    filter: drop-shadow(3px 3px 1px #000);
+    text-align: center;
+    padding: 0px 50px;
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .logoHeader {
+        width: 230px;
+        margin-top: 8px;
+    }
+
+    h3 {
+        margin-top: 50px;
+        font-size: 34px;
+    }
+}
+
+
+main {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bgNomes {
+    background-color: #3e5056;
+    height: fit-content;
+    padding: 9px 15px 11px 15px;
+    text-align: center;
+    text-wrap: wrap;
+    border-radius: 12px;
+    width: 90%;
+    filter: drop-shadow(8px 8px 2px #00000023);
+}
+
+.nomes {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #e3e3e3;
+    text-wrap: wrap;
+}
+
+.bgInfo {
+    background-color: #3e5056;
+    height: fit-content;
+    padding: 12px 15px;
+    text-align: left;
+    border-radius: 12px;
+    width: 90%;
+    filter: drop-shadow(8px 8px 2px #00000023);
+}
+
+.local,
+.data,
+.promotor {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 12rem;
+    font-weight: 400;
+    color: #e3e3e3;
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+.logoThermas {
+    width: 105px;
+    filter: drop-shadow(2px 3px 2px #000);
+    position: relative;
+    top: 50px;
+}
