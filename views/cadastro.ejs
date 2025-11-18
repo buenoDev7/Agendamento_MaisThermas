@@ -23,6 +23,37 @@
 </head>
 
 <body>
+    <ul class="sidebar py-5">
+        <!-- Agendamentos -->
+        <li>
+            <a href="#" class="pe-3"
+                data-bs-toggle="tooltip" 
+                data-bs-title="Lista de Agendamentos" 
+                data-bs-placement="right">
+                <i class="bi bi-list-task fs-4"></i>
+            </a>
+        </li>
+        
+        <!-- Atendimentos -->
+        <li>
+            <a href="#" class="pe-3"
+                data-bs-toggle="tooltip" 
+                data-bs-title="Lista de Atendimentos" 
+                data-bs-placement="right">
+                <i class="bi bi-clipboard2-check fs-4"></i>
+            </a>
+        </li>
+        
+        <!-- Sessão -->
+        <li>
+            <a href="#" class="pe-3"
+                data-bs-toggle="tooltip" 
+                data-bs-title="Sessão" 
+                data-bs-placement="right">
+                <i class="bi bi-person fs-4"></i>
+            </a>
+        </li>
+    </ul>
     <div class="container">
         <div class="row text-center">
             <p class="mb-2 mt-5">
@@ -82,6 +113,10 @@
             </div>
         </div>
     </div>
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </body>
 
 </html>

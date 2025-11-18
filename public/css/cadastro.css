@@ -16,6 +16,36 @@ body {
     height: 100%;
 }
 
+.sidebar {
+    position: absolute;
+    top: 0;
+    min-width: 95px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+    transition: all 250ms ease-in-out;
+
+    a {
+        color: #b9b7b7;
+    }
+
+    a:hover {
+        color: #ffffff !important;
+        transform: translateX(-3px);
+        filter: drop-shadow(4px 5px 6px #e3e3e3);
+    }
+    
+    li {
+        transition: all 250ms ease;
+    }
+}
+
+.sidebar:hover {
+    background-color: rgba(0, 0, 0, .5);
+}
+
 .maisThermas-header {
     width: 200px;
     filter: drop-shadow(6px 6px 1px black);
