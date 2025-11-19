@@ -66,7 +66,30 @@
                     </p>
                 </div>
                 <div class="col-12 col-lg-3 text-center">
-                    <button class="bi bi-funnel fs-3 text-white bg-transparent border-0"></button>
+                    <div class="dropdown">
+                        <button class="bi bi-funnel fs-3 text-white dropdown-toggle border-0 bg-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                               <div class="col-8 mx-auto text-center pt-2">
+                                 <span class="fs-5 text-white">
+                                    Filtrar agendamentos
+                                </span>
+                               </div>
+                            </li>
+                            <hr class="text-warningw mt-4 w-75 mx-auto">
+                            <li>
+                                <form action="/filtrar_agendamentos" method="get" class="form-control bg-transparent text-light border-0">
+                                    <label for="dataInicioFiltro" class="d-block ms-1 mb-1 fw-lighter">Data Início:</label>
+                                    <input type="date" class="bg-transparent rounded-3 p-1 ps-2" name="dataInicioFiltro" id="dataInicioFiltro" min="1999-01-01" max="2099-31-12">
+                                    
+                                    <label for="dataFimFiltro" class="d-block mt-2 ms-1 mb-1 fw-lighter">Data Fim:</label>
+                                    <input type="date" class="bg-transparent rounded-3 p-1 ps-2" name="dataFimFiltro" id="dataFimFiltro" min="1999-01-01" max="2099-31-12">
+                                    <br>
+                                    <button type="submit" class="btn btn-success p-1 px-2 mt-3">Filtrar</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -119,14 +142,15 @@
                             </li>
                             <!-- Marcar como atendido -->
                             <li>
-                                <i class="bi bi-check-lg fs-7 text-white me-1"></i>
-                                <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
+                                <a href="#" class="dropdown-item pb-2" onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                    <i class="bi bi-check-lg fs-7 text-white me-1"></i>
+                                    <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- <hr class="text-secondary mt-4"> -->
         <% }) %>
     </div>
     <script>

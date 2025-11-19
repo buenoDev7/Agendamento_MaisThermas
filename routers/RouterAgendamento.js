@@ -11,4 +11,7 @@ router.post('/salvar_agendamento', ControllerAgendamento.salvar_agendamento);
 // > View para lista de agendamentos
 router.get('/agendamentos', ControllerAgendamento.agendamentos);
 
+// > View para agendamentos filtrados por data
+router.get('/filtrar_agendamentos', ControllerAgendamento.filtrarAgendamentos);
+
 module.exports = router;

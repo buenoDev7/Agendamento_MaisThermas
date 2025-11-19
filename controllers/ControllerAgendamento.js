@@ -1,5 +1,10 @@
+const { Op } = require('sequelize');
 const Agendamento = require('../models/ModelAgendamento');
-const moment = require('moment')
+const moment = require('moment');
+let dataAtual = moment();
+let dataISO = dataAtual.format('YYYY-MM-DD');
+let dataAtualBR = dataAtual.format('DD/MM/YYYY');
+
 
 module.exports = {
     cadastro: (req, res) => {
@@ -32,10 +37,6 @@ module.exports = {
 
     agendamentos: async (req, res) => {
         try {
-            const dataAtual = moment();
-            const dataISO = dataAtual.format('YYYY-MM-DD');
-            const dataAtualBR = dataAtual.format('DD/MM/YYYY');
-
             const agendamentos = await Agendamento.findAll({
                 where: {
                     dataAgendamento: dataISO
@@ -48,6 +49,39 @@ module.exports = {
             })
         } catch (error) {
             return res.status(500).json({ error: `Erro ao buscar agendamentos: [${error.message}]` })
+        }
+    },
+
+    filtrarAgendamentos: async (req, res) => {
+        try {
+            let { dataInicioFiltro, dataFimFiltro } = req.query;
+
+            if (!dataInicioFiltro) {
+                dataInicioFiltro = dataISO
+            }
+
+            if (!dataFimFiltro) {
+                dataFimFiltro = dataInicioFiltro
+            }
+
+            let dataInicioBR = moment(dataInicioFiltro).format('DD/MM/YYYY');
+            let dataFimBR = moment(dataFimFiltro).format('DD/MM/YYYY');
+
+            const agendamentosFiltrados = await Agendamento.findAll({
+                where: {
+                    dataAgendamento: {
+                        [Op.between]: [dataInicioFiltro, dataFimFiltro]
+                    }
+                },
+                order: [['dataAgendamento', 'ASC']]
+            })
+            return res.render('agendamentosPorData', {
+                agendamentosFiltrados,
+                dataInicioBR,
+                dataFimBR
+            })
+        } catch (error) {
+            console.log(error.message)
         }
     }
 }

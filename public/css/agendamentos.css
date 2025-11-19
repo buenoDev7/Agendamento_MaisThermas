@@ -60,6 +60,16 @@ body {
     background-color: rgba(0, 0, 0, .5);
 }
 
+#dataInicioFiltro,
+#dataFimFiltro {
+    color: #e3e3e3;
+    border: 2px solid #b9b7b7 !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert();
+}
+
 .ff-philomene {
     font-family: "Chau Philomene One", sans-serif;
 }

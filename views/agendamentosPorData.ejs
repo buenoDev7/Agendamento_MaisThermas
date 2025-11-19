@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos - <%=dataInicioBR%> a <%=dataFimBR%></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/agendamentos.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <ul class="sidebar py-5 mb-0">
+        <!-- Agendamentos -->
+        <li>
+            <a href="/cadastro" class="pe-3" data-bs-toggle="tooltip" data-bs-title="Novo Agendamento"
+                data-bs-placement="right">
+                <i class="bi bi-plus-circle icon-navbar"></i>
+            </a>
+        </li>
+
+        <!-- Atendimentos -->
+        <li>
+            <a href="#" class="pe-3" data-bs-toggle="tooltip" data-bs-title="Lista de Atendimentos"
+                data-bs-placement="right">
+                <i class="bi bi-clipboard2-check icon-navbar"></i>
+            </a>
+        </li>
+
+        <!-- Sessão -->
+        <li>
+            <a href="#" class="pe-3" data-bs-toggle="tooltip" data-bs-title="Sessão" data-bs-placement="right">
+                <i class="bi bi-person icon-navbar"></i>
+            </a>
+        </li>
+    </ul>
+
+    <div class="container">
+        <!-- Header -->
+        <nav>
+            <div class="row d-flex justify-content-around pt-5">
+                <div class="col-12 col-lg-3 text-center mb-lg-0 mt-2">
+                    <img src="/img/maisThermas.webp" class="logo-header">
+                </div>
+                <div class="col-12 col-lg-4 text-center">
+                    <p class="fs-3 mb-0 text-white ff-sora fw-light">
+                        <%=agendamentosFiltrados.length%>
+                        <%=agendamentosFiltrados.length===1 ? 'AGENDAMENTO' : 'AGENDAMENTOS' %>
+                    </p>
+                    <p class="dataAgendamento fs-6 fw-light">
+                        <%= dataFimBR ? `${dataInicioBR} à ${dataFimBR}` : dataInicioBR %>
+                    </p>
+                </div>
+                <div class="col-12 col-lg-3 text-center">
+                    <div class="dropdown">
+                        <button class="bi bi-funnel fs-3 text-white dropdown-toggle border-0 bg-transparent"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <div class="col-8 mx-auto text-center pt-2">
+                                    <span class="fs-5 text-white">
+                                        Filtrar agendamentos
+                                    </span>
+                                </div>
+                            </li>
+                            <hr class="text-warningw mt-4 w-75 mx-auto">
+                            <li>
+                                <form action="/filtrar_agendamentos" method="get"
+                                    class="form-control bg-transparent text-light border-0">
+                                    <label for="dataInicioFiltro" class="d-block ms-1 mb-1 fw-lighter">Data
+                                        Início:</label>
+                                    <input type="date" class="bg-transparent rounded-3 p-1 ps-2" name="dataInicioFiltro"
+                                        id="dataInicioFiltro" min="1999-01-01" max="2099-31-12">
+
+                                    <label for="dataFimFiltro" class="d-block mt-2 ms-1 mb-1 fw-lighter">Data
+                                        Fim:</label>
+                                    <input type="date" class="bg-transparent rounded-3 p-1 ps-2" name="dataFimFiltro"
+                                        id="dataFimFiltro" min="1999-01-01" max="2099-31-12">
+                                    <br>
+                                    <button type="submit" class="btn btn-success p-1 px-2 mt-3">Filtrar</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <hr class="text-white w-75 mx-auto">
+
+        <% let i=1 %>
+            <% agendamentosFiltrados.forEach(agendamento=> { %>
+                <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center">
+                    <div class="col-auto text-start me-auto">
+                        <span class="fw-light text-white fs-6 text-uppercase pe-2" data-bs-toggle="tooltip"
+                            data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5)%>h" data-bs-placement="right">
+                            <%= i++ %> -
+                                <%= agendamento.nomesAgendamento %>
+                        </span>
+                    </div>
+                    <div class="col-auto text-end d-flex flex-row">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle bg-transparent border-0 text-white" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ps-3 bi bi-list-nested fs-6 text-white"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <!-- Editar Agendamento -->
+                                <li>
+                                    <a href="/editar/<%=agendamento.id%>" class="dropdown-item pb-2">
+                                        <i class="bi bi-pencil fs-7 text-white me-1"></i>
+                                        <span class="fs-7 text-white ff-sora fw-light">Editar Agendamento</span>
+                                    </a>
+                                </li>
+                                <!-- Excluir Agendamento -->
+                                <li>
+                                    <form action="/del_agendamento" method="POST" class="dropdown-item pb-2">
+                                        <input type="hidden" name="idAgendamento" value="<%=agendamento.id%>">
+                                        <button type="submit"
+                                            class="border-0 bg-transparent bi bi-trash3 fs-7 text-white">
+                                            <span class="fs-7 text-white ff-sora fw-light ms-1">Excluir
+                                                Agendamento</span>
+                                        </button>
+                                    </form>
+                                </li>
+                                <!-- Copiar Telefone -->
+                                <li>
+                                    <a href="#" class="dropdown-item pb-2"
+                                        onclick="copiarTelefone('55<%=agendamento.telefone%>')">
+                                        <i class="bi bi-telephone fs-7 text-white me-1"></i>
+                                        <span class="fs-7 text-white ff-sora fw-light">Copiar Telefone</span>
+                                    </a>
+                                </li>
+                                <!-- Copiar Voucher -->
+                                <li>
+                                    <a href="#" class="dropdown-item pb-2"
+                                        onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                        <i class="bi bi-ticket fs-7 text-white me-1"></i>
+                                        <span class="fs-7 text-white ff-sora fw-light">Copiar Voucher</span>
+                                    </a>
+                                </li>
+                                <!-- Marcar como atendido -->
+                                <li>
+                                    <a href="#" class="dropdown-item pb-2"
+                                        onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                        <i class="bi bi-check-lg fs-7 text-white me-1"></i>
+                                        <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+    </div>
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
+</body>
+
+</html>
