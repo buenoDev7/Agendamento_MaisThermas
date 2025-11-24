@@ -1,3 +1,5 @@
+'use strict'
+
 const { Op } = require('sequelize');
 const Agendamento = require('../models/ModelAgendamento');
 const moment = require('moment');
@@ -10,13 +12,33 @@ module.exports = {
 
     salvar_agendamento: async (req, res) => {
         try {
+            // Recebe os dados do Form
             const { nomesAgendamento, horarioAgendamento, dataAgendamento, voucher, telefone } = req.body;
-            if (!nomesAgendamento || !dataAgendamento) {
-                throw new Error(`\n❌ Erro ao salvar agendamento: [INFORMAÇÕES INCOMPLETAS]`);
+
+            // Sanitização de Inputs
+            // Verifica se "nomesAgendamento" existe e verifica typeof
+            if (!nomesAgendamento || typeof nomesAgendamento !== 'string') {
+                throw new Error('O campo "Nomes" deve ser do tipo "STRING"')
+            }
+            
+            // Normaliza caracteres UniCode e aplica trim
+            let nomesTrim = nomesAgendamento.trim().normalize('NFC');
+            
+            // Verifica length do input
+            if (nomesTrim.length <= 2 || nomesTrim.length >= 255) {
+                throw new Error('O campo "Nomes" deve ser preenchido com valores entre 3 - 255 caracteres')
+            }
+
+            // Regex que permite vírgulas e nomes com acento
+            const regexNomes = /^[A-Za-zÀ-ÖØ-öø-ÿ ,e]+$/
+            
+            // Verifica se o input corresponde à regEx
+            if (!regexNomes.test(nomesTrim)) {
+                throw new Error('O valor preenchido no campo "Nomes" não é válido')
             }
 
             const agendamento = await Agendamento.create({
-                nomesAgendamento,
+                nomesAgendamento: nomesTrim,
                 horarioAgendamento,
                 dataAgendamento,
                 voucher,
@@ -29,6 +51,9 @@ module.exports = {
 
         } catch (error) {
             console.error(error.message);
+            res.status(400).render('404', {
+                error
+            })
         }
     },
 
