@@ -69,52 +69,50 @@
     </ul>
     <div class="container-fluid">
         <div class="row d-flex flex-row justify-content-center">
-            <div class="col">
-                <div class="col-12 col-sm-6 mainCard conviteYan" id="mainCard">
-                    <div class="header">
-                        <h1>AGENDAMENTO</h1>
-                        <img src="/img/maisThermas.webp" alt="maisTermasLogo"
-                            class="logoHeader">
-                        <h3>CONVIDADOS</h3>
-                    </div>
-
-                    <main>
-                        <div class="bgNomes">
-                            <span class="nomes" id="nomes">
-                                <% if (agendamento.nomesAgendamento===null || agendamento.nomesAgendamento==='undefined' ) { %>
-                                    <span> </span>
-                                <% } else { %>
-                                    <%= agendamento.nomesAgendamento %>
-                                <% } %>
-                            </span>
-                        </div>
-                        <br><br>
-                        <div class="bgInfo mb-auto">
-                            <span class="local mb-1"><span class="bold">Local</span>:
-                                Sala VIP</span>
-                            <br>
-                            <span class="data mb-1">
-                                <% if (agendamento.horarioAgendamento==="" || agendamento.horarioAgendamento==null) { %>
-                                    <span class="bold">Data:</span>
-                                    <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %>
-                                <% } else { %>
-                                    <span class="bold">Data e Horário:</span>
-                                        <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %> 
-                                            às <%= agendamento.horarioAgendamento %>h
-                                <% } %>
-                            </span>
-                            <br>
-                            <span class="mb-1 promotor">
-                                <span class="bold" id="promotor">Promotor</span>: Yan Bueno
-                            </span>
-                        </div>
-                    </main>
-
-                    <footer>
-                        <img src="/img/thermas-logo.png" alt="ThermasDeSaoPedro"
-                            class="logoThermas">
-                    </footer>
+            <div class="col-12 col-sm-6 mainCard conviteYan" id="mainCard">
+                <div class="header">
+                    <h1>AGENDAMENTO</h1>
+                    <img src="/img/maisThermas.webp" alt="maisTermasLogo" class="logoHeader">
+                    <h3>CONVIDADOS</h3>
                 </div>
+
+                <main>
+                    <div class="bgNomes">
+                        <span class="nomes" id="nomes">
+                            <% if (agendamento.nomesAgendamento===null || agendamento.nomesAgendamento==='undefined' ) { %>
+                                <span> </span>
+                            <% } else { %>
+                                <%= agendamento.nomesAgendamento %>
+                            <% } %>
+                        </span>
+                    </div>
+                    <br><br>
+                    <div class="bgInfo mb-auto">
+                        <span class="local mb-1">
+                            <span class="bold">Local</span>:Sala VIP
+                        </span>
+                        <br>
+                        <span class="data mb-1">
+                            <% if (agendamento.horarioAgendamento==="" || agendamento.horarioAgendamento==null) { %>
+                                <span class="bold">Data:</span>
+                                <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %>
+                            <% } else { %>
+                                <span class="bold">Data e Horário:</span>
+                                    <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %> 
+                                        às <%= agendamento.horarioAgendamento %>h
+                            <% } %>
+                        </span>
+                        <br>
+                        <span class="mb-1 promotor">
+                            <span class="bold" id="promotor">Promotor</span>: Yan Bueno
+                        </span>
+                    </div>
+                </main>
+
+                <footer>
+                    <img src="/img/thermas-logo.png" alt="ThermasDeSaoPedro"
+                        class="logoThermas">
+                </footer>
             </div>
         </div>
         <script>
