@@ -1,9 +1,6 @@
 const { Op } = require('sequelize');
 const Agendamento = require('../models/ModelAgendamento');
 const moment = require('moment');
-let dataAtual = moment();
-let dataISO = dataAtual.format('YYYY-MM-DD');
-let dataAtualBR = dataAtual.format('DD/MM/YYYY');
 
 
 module.exports = {
@@ -36,6 +33,9 @@ module.exports = {
     },
 
     agendamentos: async (req, res) => {
+        let dataAtual = moment();
+        let dataISO = dataAtual.format('YYYY-MM-DD');
+        let dataAtualBR = dataAtual.format('DD/MM/YYYY');
         try {
             const agendamentos = await Agendamento.findAll({
                 where: {
@@ -53,15 +53,25 @@ module.exports = {
     },
 
     filtrarAgendamentos: async (req, res) => {
+        let dataAtual = moment();
+        let dataISO = dataAtual.format('YYYY-MM-DD');
+
         try {
             let { dataInicioFiltro, dataFimFiltro } = req.query;
 
+            // Se a dataInicio for vazia, assume como data atual
             if (!dataInicioFiltro) {
                 dataInicioFiltro = dataISO
             }
 
+            // Se a dataFim for vazia, assume como data atual
             if (!dataFimFiltro) {
-                dataFimFiltro = dataInicioFiltro
+                dataFimFiltro = dataISO
+            }
+
+            // Evita filtragem de dataFim menor que dataInicio. (Parâmentros invertidos na pesquisa)
+            if (dataFimFiltro < dataInicioFiltro) {
+                throw new Error('\n❌ Erro ao filtrar agendamentos: A data fim não pode ser maior que a data de início')
             }
 
             let dataInicioBR = moment(dataInicioFiltro).format('DD/MM/YYYY');
@@ -81,7 +91,10 @@ module.exports = {
                 dataFimBR
             })
         } catch (error) {
-            console.log(error.message)
+            console.error(error.message)
+            return res.render('404', {
+                error
+            })
         }
     }
 }

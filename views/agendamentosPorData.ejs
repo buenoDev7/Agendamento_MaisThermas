@@ -61,9 +61,15 @@
                         <%=agendamentosFiltrados.length%>
                         <%=agendamentosFiltrados.length===1 ? 'AGENDAMENTO' : 'AGENDAMENTOS' %>
                     </p>
-                    <p class="dataAgendamento fs-6 fw-light">
-                        <%= dataFimBR ? `${dataInicioBR} à ${dataFimBR}` : dataInicioBR %>
-                    </p>
+                    <% if (!dataInicioBR || dataFimBR === dataInicioBR) { %>
+                        <p class="dataAgendamento fs-6 fw-light">
+                            <%=dataInicioBR%>
+                        </p>
+                    <% } else { %>
+                        <p class="dataAgendamento fs-6 fw-light">
+                            <%= dataInicioBR %> à <%=dataFimBR%>
+                        </p>
+                    <% } %>
                 </div>
                 <div class="col-12 col-lg-3 text-center">
                     <div class="dropdown">
@@ -103,9 +109,9 @@
 
         <% let i=1 %>
             <% agendamentosFiltrados.forEach(agendamento=> { %>
-                <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center">
+                <div class="row w-100 px-5 mx-auto mt-4 d-flex flex-row justify-content-evenly align-items-center">
                     <div class="col-auto text-start me-auto">
-                        <span class="fw-light text-white fs-6 text-uppercase pe-2" data-bs-toggle="tooltip"
+                        <span class="fw-light text-white fs-6 pe-2" data-bs-toggle="tooltip"
                             data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5)%>h" data-bs-placement="right">
                             <%= i++ %> -
                                 <%= agendamento.nomesAgendamento %>
