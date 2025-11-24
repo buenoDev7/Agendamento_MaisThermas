@@ -122,7 +122,7 @@
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger: 'hover'}))
 
-            // Função que muda a tela para fullScreen
+            // Função que muda a tela para fullScreen clicando no button
             function fullscreen() {
                 if (document.fullscreenElement) {
                     document.exitFullscreen();
@@ -130,6 +130,11 @@
                     document.documentElement.requestFullscreen();
                 }
             }
+
+            // Permite Fullscreen com Double Click em qualquer lugar da tela
+            window.addEventListener('dblclick', ()=> {
+                fullscreen()
+            });
         </script>
 </body>
 
