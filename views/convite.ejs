@@ -50,7 +50,7 @@
         
         <!-- FullScreen -->
         <li>
-            <a href="#" class="pe-3"
+            <a href="#" class="pe-3" onclick="fullscreen()"
                 data-bs-toggle="tooltip" 
                 data-bs-title="Tela Cheia" 
                 data-bs-placement="right">
@@ -118,8 +118,18 @@
             </div>
         </div>
         <script>
+            // Exibição de Tooltips
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+            // Função que muda a tela para fullScreen
+            function fullscreen() {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
         </script>
 </body>
 
