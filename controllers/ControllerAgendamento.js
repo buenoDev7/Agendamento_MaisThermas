@@ -16,25 +16,35 @@ module.exports = {
             const { nomesAgendamento, horarioAgendamento, dataAgendamento, voucher, telefone } = req.body;
 
             // Sanitização de Inputs
+
             // Verifica se "nomesAgendamento" existe e verifica typeof
             if (!nomesAgendamento || typeof nomesAgendamento !== 'string') {
-                throw new Error('O campo "Nomes" deve ser do tipo "STRING"')
+                console.log('\n❌ Erro: [Preencha o campo "nomes" com uma string!]')
+                return res.status(400).render('errorPage', {
+                    error: `Preencha o campo 'nomes' com uma string!`
+                })
             }
-            
+
             // Normaliza caracteres UniCode e aplica trim
             let nomesTrim = nomesAgendamento.trim().normalize('NFC');
-            
+
             // Verifica length do input
             if (nomesTrim.length <= 2 || nomesTrim.length >= 255) {
-                throw new Error('O campo "Nomes" deve ser preenchido com valores entre 3 - 255 caracteres')
+                console.log('\n❌ Erro: [Preencha o campo "Nomes" com valores entre 3-255 caracteres!]')
+                return res.status(400).render('errorPage', {
+                    error: `Preencha o campo 'Nomes' com valores entre 3-255 caracteres!`
+                });
             }
 
             // Regex que permite vírgulas e nomes com acento
             const regexNomes = /^[A-Za-zÀ-ÖØ-öø-ÿ ,e]+$/
-            
+
             // Verifica se o input corresponde à regEx
             if (!regexNomes.test(nomesTrim)) {
-                throw new Error('O valor preenchido no campo "Nomes" não é válido')
+                console.log('\n❌ Erro: [Formato inválido para o campo "Nomes". Volte e tente novamente!]')
+                return res.status(400).render('errorPage', {
+                    error: `Formato inválido para o campo 'Nomes'. Volte e tente novamente!`
+                })
             }
 
             const agendamento = await Agendamento.create({
@@ -51,7 +61,7 @@ module.exports = {
 
         } catch (error) {
             console.error(error.message);
-            res.status(400).render('404', {
+            res.status(400).render('errorPage', {
                 error
             })
         }

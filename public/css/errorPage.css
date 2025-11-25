@@ -36,7 +36,7 @@ body {
         transform: translateX(-3px);
         filter: drop-shadow(4px 5px 6px #e3e3e3);
     }
-
+    
     li {
         transition: all 250ms ease;
     }
@@ -46,39 +46,15 @@ body {
     background-color: rgba(0, 0, 0, .2);
 }
 
-.maisThermas-header {
-    width: 200px;
-    filter: drop-shadow(6px 6px 1px black);
-}
-
-.ff-philomene {
-    font-family: "Chau Philomene One", sans-serif;
-}
-
-.ff-sora {
+.card {
     font-family: "Sora", sans-serif;
-}
+    filter: drop-shadow(20px 20px 20px rgb(0, 0, 0));
+    
+    .error-icon {
+        width: 45px;
+    }
 
-.yellow {
-    color: #ffbf00;
-    filter: drop-shadow(3px 3px 1px #000);
-}
-
-.form-style {
-    background: linear-gradient(0deg, rgba(8, 13, 14, 1) 0%, rgba(9, 27, 33, 1) 39%, rgba(6, 57, 74, 1) 100%);
-    filter: drop-shadow(13px 14px 20px black);
-    color: #e3e3e3;
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator,
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
-
-#nomesAgendamento::placeholder,
-#horarioAgendamento::placeholder,
-#telefone::placeholder,
-#voucher::placeholder {
-    color: #e3e3e3;
+    button:hover {
+        filter: drop-shadow(1px 1px 10px red);
+    }
 }
