@@ -69,7 +69,27 @@ module.exports = {
 
             // Normaliza o horário para o formato HH:mm antes de salvar
             let horarioBR = moment(horarioAgendamento, 'HH:mm').format('HH:mm');
-            
+
+
+            // → Campo "dataAgendamento"
+            // Verifica se existe e seu tipo
+            if (!dataAgendamento || typeof dataAgendamento !== 'string') {
+                console.error(`Data inválida ou informação não enviada. Volte e tente novamente!`)
+                return res.status(400).render('errorPage', {
+                    error: `Data inválida ou informação não enviada. Volte e tente novamente!`
+                })
+            }
+
+            // Impede datas inválidas → 58/97/4798, por exemplo
+            let dataValidada = moment(dataAgendamento, 'YYYY-MM-DD', true).isValid();
+
+            if (!dataValidada) {
+                console.error(`Data inválida. Volte e tente novamente!`)
+                return res.status(400).render('errorPage', {
+                    error: `Data inválida. Volte e tente novamente!`
+                })
+            }
+
             // Cria o agendamento no Banco de Dados
             const agendamento = await Agendamento.create({
                 nomesAgendamento: nomesTrim,
