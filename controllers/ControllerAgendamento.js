@@ -17,6 +17,8 @@ module.exports = {
 
             // Sanitização de Inputs
 
+            // →  Campo "nomesAgendamento"
+
             // Verifica se "nomesAgendamento" existe e verifica typeof
             if (!nomesAgendamento || typeof nomesAgendamento !== 'string') {
                 console.log('\n❌ Erro: [Preencha o campo "nomes" com uma string!]')
@@ -28,7 +30,7 @@ module.exports = {
             // Normaliza caracteres UniCode e aplica trim
             let nomesTrim = nomesAgendamento.trim().normalize('NFC');
 
-            // Verifica length do input
+            // Verifica length de "nomesAgendamento"
             if (nomesTrim.length <= 2 || nomesTrim.length >= 255) {
                 console.log('\n❌ Erro: [Preencha o campo "Nomes" com valores entre 3-255 caracteres!]')
                 return res.status(400).render('errorPage', {
@@ -39,7 +41,7 @@ module.exports = {
             // Regex que permite vírgulas e nomes com acento
             const regexNomes = /^[A-Za-zÀ-ÖØ-öø-ÿ ,e]+$/
 
-            // Verifica se o input corresponde à regEx
+            // Verifica se o valor de "nomesAgendamento" corresponde à regEx
             if (!regexNomes.test(nomesTrim)) {
                 console.log('\n❌ Erro: [Formato inválido para o campo "Nomes". Volte e tente novamente!]')
                 return res.status(400).render('errorPage', {
@@ -47,14 +49,37 @@ module.exports = {
                 })
             }
 
+            // → Campo "horarioAgendamento"
+            // Verifica se existe e o tipo de "horarioAgendamento"
+            if (!horarioAgendamento || typeof horarioAgendamento !== 'string') {
+                console.error("Formato inválido para o campo 'Horário'. Volte e tente novamente!")
+                return res.status(400).render('errorPage', {
+                    error: `Formato inválido para o campo 'Horário'. Volte e tente novamente!`
+                })
+            }
+
+            // Valida se o horário segue o formato HH:mm (24h) → Rejeita 57:78, por exemplo 
+            let horarioValidado = moment(horarioAgendamento, 'HH:mm', true).isValid();
+            if (!horarioValidado) {
+                console.error("O horário não é valido. Volte e tente novamente!")
+                return res.status(400).render('errorPage', {
+                    error: `O horário não é válido. Volte e tente novamente!`
+                })
+            }
+
+            // Normaliza o horário para o formato HH:mm antes de salvar
+            let horarioBR = moment(horarioAgendamento, 'HH:mm').format('HH:mm');
+            
+            // Cria o agendamento no Banco de Dados
             const agendamento = await Agendamento.create({
                 nomesAgendamento: nomesTrim,
-                horarioAgendamento,
+                horarioAgendamento: horarioBR,
                 dataAgendamento,
                 voucher,
                 telefone
             });
 
+            // Renderiza o convite
             return res.render('convite', {
                 agendamento
             })
@@ -127,7 +152,7 @@ module.exports = {
             })
         } catch (error) {
             console.error(error.message)
-            return res.render('404', {
+            return res.render('errorPage', {
                 error
             })
         }
