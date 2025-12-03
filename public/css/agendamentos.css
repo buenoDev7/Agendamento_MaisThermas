@@ -10,22 +10,22 @@ html {
 }
 
 body {
-  height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-  background: #333;  
-  padding-bottom: 750px;
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background: #333;
+    padding-bottom: 50px;
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: -80px;  
-  background-image: url('../img/wpp_ficha2.webp');
-  background-size: cover;
-  background-position: center;
-  filter: blur(4px) brightness(0.2);
-  z-index: -1;
+    content: "";
+    position: fixed;
+    inset: -80px;
+    background-image: url('../img/wpp_ficha2.webp');
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px) brightness(0.2);
+    z-index: -1;
 }
 
 .logo-header {
@@ -37,12 +37,12 @@ body::before {
 }
 
 .truncate {
-  display: block;
-  min-width: 0;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sidebar {

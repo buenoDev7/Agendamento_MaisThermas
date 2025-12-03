@@ -108,69 +108,70 @@
         <hr class="text-white w-75 mx-auto">
 
         <% let i=1 %>
-            <% agendamentosFiltrados.forEach(agendamento=> { %>
-                <div class="row w-100 px-5 mx-auto mt-4 d-flex align-items-center flex-nowrap">
-                    <div class="col text-start overflow-hidden">
-                        <span class="fw-light text-white fs-5 pe-2 truncate">
-                            <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) %>" data-bs-placement="right">
-                                <%= i++ %> - <%= agendamento.nomesAgendamento %>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="col-auto text-end d-flex flex-row">
-                        <div class="dropdown">
-                            <button class="dropdown-toggle bg-transparent border-0 text-white" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ps-3 bi bi-list-nested fs-5 text-white"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <!-- Editar Agendamento -->
-                                <li>
-                                    <a href="/editar/<%=agendamento.id%>" class="dropdown-item pb-2">
-                                        <i class="bi bi-pencil fs-7 text-white me-1"></i>
-                                        <span class="fs-7 text-white ff-sora fw-light">Editar Agendamento</span>
-                                    </a>
-                                </li>
-                                <!-- Excluir Agendamento -->
-                                <li>
-                                    <form action="/del_agendamento" method="POST" class="dropdown-item pb-2" onsubmit="return confirm('Tem certeza que quer excluir este agendamento?')">
-                                        <input type="hidden" name="idAgendamento" value="<%=agendamento.id%>">
-                                        <button type="submit"
-                                            class="border-0 bg-transparent bi bi-trash3 fs-7 text-white">
-                                            <span class="fs-7 text-white ff-sora fw-light ms-1">Excluir Agendamento</span>
-                                        </button>
-                                    </form>
-                                </li>
-                                <!-- Copiar Telefone -->
-                                <li>
-                                    <a href="#" class="dropdown-item pb-2"
-                                        onclick="copiarTelefone('55<%=agendamento.telefone%>')">
-                                        <i class="bi bi-telephone fs-7 text-white me-1"></i>
-                                        <span class="fs-7 text-white ff-sora fw-light">Copiar Telefone</span>
-                                    </a>
-                                </li>
-                                <!-- Copiar Voucher -->
-                                <li>
-                                    <a href="#" class="dropdown-item pb-2"
-                                        onclick="copiarVoucher('<%=agendamento.voucher%>')">
-                                        <i class="bi bi-ticket fs-7 text-white me-1"></i>
-                                        <span class="fs-7 text-white ff-sora fw-light">Copiar Voucher</span>
-                                    </a>
-                                </li>
-                                <!-- Marcar como atendido -->
-                                <li>
-                                    <a href="#" class="dropdown-item pb-2"
-                                        onclick="copiarVoucher('<%=agendamento.voucher%>')">
-                                        <i class="bi bi-check-lg fs-7 text-white me-1"></i>
-                                        <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+        <% agendamentosFiltrados.forEach(agendamento=> { %>
+        <div class="row w-100 px-5 mx-auto mt-4 d-flex align-items-center flex-nowrap">
+            <div class="col text-start overflow-hidden">
+                <span class="fw-light text-white fs-5 pe-2 truncate">
+                    <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) %>" data-bs-placement="right">
+                        <%= i++ %> - <%= agendamento.nomesAgendamento %>
+                    </span>
+                </span>
+            </div>
+            <div class="col-auto text-end d-flex flex-row">
+                <div class="dropdown">
+                    <button class="dropdown-toggle bg-transparent border-0 text-white" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="ps-3 bi bi-list-nested fs-5 text-white"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <!-- Editar Agendamento -->
+                        <li>
+                            <a href="/editar/<%=agendamento.id%>" class="dropdown-item pb-2">
+                                <i class="bi bi-pencil fs-7 text-white me-1"></i>
+                                <span class="fs-7 text-white ff-sora fw-light">Editar Agendamento</span>
+                            </a>
+                        </li>
+                        <!-- Excluir Agendamento -->
+                        <li>
+                            <form action="/del_agendamento" method="POST" class="dropdown-item pb-2" onsubmit="return confirm('Tem certeza que quer excluir este agendamento?')">
+                                <input type="hidden" name="idAgendamento" value="<%=agendamento.id%>">
+                                <button type="submit"
+                                    class="border-0 bg-transparent bi bi-trash3 fs-7 text-white">
+                                    <span class="fs-7 text-white ff-sora fw-light ms-1">Excluir Agendamento</span>
+                                </button>
+                            </form>
+                        </li>
+                        <!-- Copiar Telefone -->
+                        <li>
+                            <a href="#" class="dropdown-item pb-2"
+                                onclick="copiarTelefone('55<%=agendamento.telefone%>')">
+                                <i class="bi bi-telephone fs-7 text-white me-1"></i>
+                                <span class="fs-7 text-white ff-sora fw-light">Copiar Telefone</span>
+                            </a>
+                        </li>
+                        <!-- Copiar Voucher -->
+                        <li>
+                            <a href="#" class="dropdown-item pb-2"
+                                onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                <i class="bi bi-ticket fs-7 text-white me-1"></i>
+                                <span class="fs-7 text-white ff-sora fw-light">Copiar Voucher</span>
+                            </a>
+                        </li>
+                        <!-- Marcar como atendido -->
+                        <li>
+                            <a href="#" class="dropdown-item pb-2"
+                                onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                <i class="bi bi-check-lg fs-7 text-white me-1"></i>
+                                <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <% }) %>
+            </div>
+        </div>
+        <% }) %>
     </div>
+    <br><br><br><br>
     <script>
         // Copia o voucher para área de transferencia
         function copiarVoucher(voucher) {
