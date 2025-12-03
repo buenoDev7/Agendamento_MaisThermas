@@ -129,21 +129,21 @@
                             </li>                            
                             <!-- Copiar Telefone -->
                             <li>
-                                <a href="#" class="dropdown-item pb-2" onclick="copiarTelefone('55<%=agendamento.telefone%>')">
+                                <a href="#" class="dropdown-item pb-2" onclick="copiar('55<%=agendamento.telefone%>')">
                                     <i class="bi bi-telephone fs-7 text-white me-1"></i>
                                     <span class="fs-7 text-white ff-sora fw-light">Copiar Telefone</span>
                                 </a>
                             </li>
                             <!-- Copiar Voucher -->
                             <li>
-                                <a href="#" class="dropdown-item pb-2" onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                <a href="#" class="dropdown-item pb-2" onclick="copiar('<%=agendamento.voucher%>')">
                                     <i class="bi bi-ticket fs-7 text-white me-1"></i>
                                     <span class="fs-7 text-white ff-sora fw-light">Copiar Voucher</span>
                                 </a>
                             </li>
                             <!-- Marcar como atendido -->
                             <li>
-                                <a href="#" class="dropdown-item pb-2" onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                <a href="#" class="dropdown-item pb-2">
                                     <i class="bi bi-check-lg fs-7 text-white me-1"></i>
                                     <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
                                 </a>
@@ -155,8 +155,8 @@
         <% }) %>
     </div>
     <script>
-        function copiarVoucher(voucher) {
-            navigator.clipboard.writeText(voucher)
+        function copiar(conteudo) {
+            navigator.clipboard.writeText(conteudo)
         }
 
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
