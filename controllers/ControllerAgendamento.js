@@ -98,5 +98,40 @@ module.exports = {
         } catch (error) {
             console.error(error.message)
         }
+    },
+
+    editarAgendamento: async (req, res) => {
+        try {
+            let idAgendamento = req.params.idAgendamento;
+            let agendamento = await Agendamento.findByPk(idAgendamento)
+            res.render('editarAgendamento', {
+                agendamento
+            })
+        } catch (error) {
+            console.error(error.message)
+            return res.status(400).render('errorPage', {
+                error: error.message
+            })
+        }
+    },
+
+    salvarEdicao: async (req, res) => {
+        let novosDados = {
+            nomesAgendamento: req.body.nomesAgendamento,
+            horarioAgendamento: req.body.horarioAgendamento,
+            dataAgendamento: req.body.dataAgendamento,
+            voucher: req.body.voucher,
+            telefone: req.body.telefone,
+        }
+
+        Agendamento.update(novosDados, {
+            where: {
+                id: req.body.idAgendamento
+            }
+        })
+        
+        res.render('conviteEditado', {
+            novosDados
+        })
     }
 }

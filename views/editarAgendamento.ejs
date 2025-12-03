@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Dados de Agendamento</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/cadastro.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.thermas.com.br/shared/images/favicon/favicon-16x16.png">
+</head>
+
+<body>
+    <ul class="sidebar py-5">
+        <!-- Agendamentos -->
+        <li>
+            <a href="/agendamentos" class="pe-3"
+                data-bs-toggle="tooltip" 
+                data-bs-title="Lista de Agendamentos" 
+                data-bs-placement="right">
+                <i class="bi bi-list-task fs-5"></i>
+            </a>
+        </li>
+        
+        <!-- Atendimentos -->
+        <li>
+            <a href="#" class="pe-3"
+                data-bs-toggle="tooltip" 
+                data-bs-title="Lista de Atendimentos" 
+                data-bs-placement="right">
+                <i class="bi bi-clipboard2-check fs-5"></i>
+            </a>
+        </li>
+        
+        <!-- Sessão -->
+        <li>
+            <a href="#" class="pe-3"
+                data-bs-toggle="tooltip" 
+                data-bs-title="Sessão" 
+                data-bs-placement="right">
+                <i class="bi bi-person fs-5"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="row text-center">
+            <p class="mb-2 mt-5">
+                <img src="/img/maisThermas.webp" class="maisThermas-header">
+            </p>
+            <h1 class="ff-philomene yellow display-5 mt-2">EDITAR AGENDAMENTO</h1>
+        </div>
+        <!-- Form de cadastro de dados para o agendamento -->
+        <div class="row justify-content-center mt-3">
+            <div class="col-8">
+                <form action="/salvar_edicao" method="post" class="form-control form-style px-3 py-2 pb-3">
+                    <!-- Linha 1 -->
+                    <div class="row">
+                        <!-- Nomes -->
+                        <div class="col-12">
+                            <label for="nomesAgendamento" class="form-label fs-6 fw-semibold mb-1">Nomes:</label>
+                            <input type="text" class="form-control bg-transparent text-white" name="nomesAgendamento"
+                                required autocomplete="off" id="nomesAgendamento" value="<%= agendamento.nomesAgendamento %>"
+                                autocapitalize="on">
+                                <input type="hidden" name="idAgendamento" value="<%=agendamento.id%>">
+                        </div>
+                    </div>
+                    <!-- Linha 2 -->
+                    <div class="row my-2">
+                        <!-- Horário -->
+                        <div class="col-6 col-lg-3">
+                            <label for="horarioAgendamento" class="form-label fs-6 fw-semibold mb-1">Horário:</label>
+                            <input type="time" class="form-control bg-transparent text-white" name="horarioAgendamento"
+                                autocomplete="off" id="horarioAgendamento" value="<%= agendamento.horarioAgendamento %>">
+                        </div>
+                        <!-- Data -->
+                        <div class="col-6 col-lg-3">
+                            <label for="dataAgendamento" class="form-label fs-6 fw-semibold mb-1">Data:</label>
+                            <input type="date" class="form-control bg-transparent text-white" name="dataAgendamento"
+                                required autocomplete="off" id="dataAgendamento" min="1900-01-01" max="2099-12-31" value="<%= agendamento.dataAgendamento%>">
+                        </div>
+                        <!-- Voucher -->
+                         <div class="col-6 col-lg-3 mt-2 mt-lg-0">
+                            <label for="voucher" class="form-label fs-6 fw-semibold mb-1">Voucher:</label>
+                            <input type="text" class="form-control bg-transparent text-white" name="voucher"
+                                autocomplete="off" id="voucher" placeholder="Ex.: ABC123I" value="<%= agendamento.voucher %>">
+                        </div>
+                        <!-- Telefone -->
+                         <div class="col-6 col-lg-3 mt-2 mt-lg-0">
+                            <label for="telefone" class="form-label fs-6 fw-semibold mb-1">Telefone:</label>
+                            <input type="text" class="form-control bg-transparent text-white" name="telefone"
+                                autocomplete="off" id="telefone" placeholder="Ex.: 191234567890" value="<%= agendamento.telefone %>">
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12 ms-auto py-1">
+                            <button type="submit"class="btn btn-outline-success w-100 mt-2 fw-semibold">
+                                Agendar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger: 'hover'}))
+    </script>
+</body>
+
+</html>

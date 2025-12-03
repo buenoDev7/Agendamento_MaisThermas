@@ -60,7 +60,7 @@
         
         <!-- Enviar convite pro cliente -->
         <li>
-            <a href="https://wa.me/55<%=agendamento.telefone%>" target="_blank" class="pe-3"
+            <a href="https://wa.me/55<%=novosDados.telefone%>" target="_blank" class="pe-3"
                 data-bs-toggle="tooltip" 
                 data-bs-title="Enviar convite" 
                 data-bs-placement="right">
@@ -89,10 +89,10 @@
                 <main>
                     <div class="bgNomes">
                         <span class="nomes" id="nomes">
-                            <% if (agendamento.nomesAgendamento===null || agendamento.nomesAgendamento==='undefined' ) { %>
+                            <% if (novosDados.nomesAgendamento===null || novosDados.nomesAgendamento==='undefined' ) { %>
                                 <span> </span>
                             <% } else { %>
-                                <%= agendamento.nomesAgendamento %>
+                                <%= novosDados.nomesAgendamento %>
                             <% } %>
                         </span>
                     </div>
@@ -103,13 +103,13 @@
                         </span>
                         <br>
                         <span class="data mb-1">
-                            <% if (agendamento.horarioAgendamento==="" || agendamento.horarioAgendamento==null) { %>
+                            <% if (novosDados.horarioAgendamento==="" || novosDados.horarioAgendamento==null) { %>
                                 <span class="bold">Data:</span>
-                                <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %>
+                                <%= new Date(novosDados.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %>
                             <% } else { %>
                                 <span class="bold">Data e Horário:</span>
-                                    <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %> 
-                                        às <%= agendamento.horarioAgendamento.slice(0, 5)%>h
+                                    <%= new Date(novosDados.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %> 
+                                        às <%= novosDados.horarioAgendamento.slice(0, 5)%>h
                             <% } %>
                         </span>
                         <br>
