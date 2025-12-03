@@ -26,6 +26,15 @@ body {
     color: #e3e3e3;
 }
 
+.truncate {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .sidebar {
     position: absolute;
     top: 0;
