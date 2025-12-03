@@ -49,6 +49,7 @@ module.exports = {
                 order: [['horarioAgendamento', 'ASC']]
             })
             return res.render('agendamentos', {
+                currentUrl: req.originalUrl,
                 agendamentos,
                 dataAtualBR
             })
@@ -91,6 +92,7 @@ module.exports = {
                 order: [['dataAgendamento', 'ASC']]
             })
             return res.render('agendamentosPorData', {
+                currentUrl: req.originalUrl,
                 agendamentosFiltrados,
                 dataInicioBR,
                 dataFimBR
@@ -129,9 +131,24 @@ module.exports = {
                 id: req.body.idAgendamento
             }
         })
-        
+
         res.render('conviteEditado', {
             novosDados
         })
+    },
+
+    deletarAgendamento: async (req, res) => {
+        try {
+            const idAgendamento = req.body.idAgendamento;
+            await Agendamento.destroy({
+                where: { id: idAgendamento }
+            });
+
+            const returnTo = req.get('referer') || '/agendamentos';
+            return res.redirect(returnTo);
+        } catch (error) {
+            console.error(error.message);
+            return res.status(500).render('errorPage', { error });
+        }
     }
 }

@@ -17,6 +17,9 @@ router.get('/editar/:idAgendamento', ControllerAgendamento.editarAgendamento);
 // > Persiste alterações do agendamento
 router.post('/salvar_edicao', ControllerAgendamento.salvarEdicao);
 
+// > Deletar agendamento
+router.post('/del_agendamento', ControllerAgendamento.deletarAgendamento);
+
 // > View para agendamentos filtrados por data
 router.get('/filtrar_agendamentos', ControllerAgendamento.filtrarAgendamentos);
 

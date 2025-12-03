@@ -120,7 +120,7 @@
                             </li>
                             <!-- Excluir Agendamento -->
                             <li>
-                                <form action="/del_agendamento" method="POST" class="dropdown-item pb-2">
+                                <form action="/del_agendamento" method="POST" class="dropdown-item pb-2" onsubmit="return confirm('Tem certeza que quer excluir este agendamento?')">
                                     <input type="hidden" name="idAgendamento" value="<%=agendamento.id%>">
                                     <button type="submit" class="border-0 bg-transparent bi bi-trash3 fs-7 text-white">
                                         <span class="fs-7 text-white ff-sora fw-light ms-1">Excluir Agendamento</span>
