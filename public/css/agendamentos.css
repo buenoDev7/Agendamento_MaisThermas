@@ -10,10 +10,11 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
   overflow-x: hidden;
   position: relative;
   background: #333;  
+  padding-bottom: 750px;
 }
 
 body::before {
@@ -46,9 +47,10 @@ body::before {
 
 .sidebar {
     position: absolute;
-    top: 0;
-    min-width: 95px;
-    min-height: 100vh;
+    top: 0px;
+    left: 0px;
+    width: 95px;
+    min-height: 100lvh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -72,10 +74,6 @@ body::before {
     .icon-navbar {
         font-size: 20px;
     }
-}
-
-.sidebar:hover {
-    background-color: rgba(0, 0, 0, .2);
 }
 
 #dataInicioFiltro,
