@@ -100,7 +100,9 @@
             <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center">
                 <div class="col text-start overflow-hidden">
                     <span class="fw-light text-white fs-5 pe-2 truncate">
-                        <%= i++ %> - <%= agendamento.nomesAgendamento %>
+                        <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
+                            <%= i++ %> - <%= agendamento.nomesAgendamento %>
+                        </span>
                     </span>
                 </div>
                 <div class="col-auto text-end d-flex flex-row">
