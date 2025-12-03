@@ -99,16 +99,16 @@
         <% agendamentos.forEach(agendamento => { %>
             <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center">
                 <div class="col text-start overflow-hidden">
-                    <span class="fw-light text-white fs-5 pe-2 truncate">
-                        <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
-                            <%= i++ %> - <%= agendamento.nomesAgendamento %>
+                        <span class="fw-light text-white fs-5 pe-2 truncate">
+                            <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
+                                <%= i++ %> - <%= agendamento.nomesAgendamento %>
+                            </span>
                         </span>
-                    </span>
-                </div>
+                    </div>
                 <div class="col-auto text-end d-flex flex-row">
                     <div class="dropdown">
                         <button class="dropdown-toggle bg-transparent border-0 text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="ps-3 bi bi-list-nested fs-5 text-white"></i>
+                            <i class="ps-3 bi bi-list-nested fs-6 text-white"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <!-- Editar Agendamento -->

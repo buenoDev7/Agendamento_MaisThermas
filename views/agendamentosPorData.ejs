@@ -83,7 +83,7 @@
                                     </span>
                                 </div>
                             </li>
-                            <hr class="text-warningw mt-4 w-75 mx-auto">
+                            <hr class="text-warning mt-4 w-75 mx-auto">
                             <li>
                                 <form action="/filtrar_agendamentos" method="get"
                                     class="form-control bg-transparent text-light border-0">
@@ -173,6 +173,12 @@
                 <% }) %>
     </div>
     <script>
+        // Copia o voucher para área de transferencia
+        function copiarVoucher(voucher) {
+            navigator.clipboard.writeText(voucher);
+        }
+
+        // Exibe tooltips
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger: 'hover'}))
     </script>
