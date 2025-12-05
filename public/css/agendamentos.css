@@ -107,24 +107,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .sidebar {
         position: fixed;
         top: auto !important;
-        bottom: 0px;
-        left: 0;
-        width: 100vw;
-        max-height: 0px;
-        min-height: 0;
+        width: fit-content;
+        max-height: 100vh;
+        min-height: 100vh;
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-        z-index: 9999;
+        flex-direction: column;
+        align-items: space-around;
+        z-index: 0;
         padding: 0 8px;
     }
-
+    
     .sidebar:hover {
         background-color: transparent !important;
     }
-
+    
     .sidebar li {
+        padding-left: 12px;
         margin: 0;
     }
 
