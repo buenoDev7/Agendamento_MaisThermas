@@ -110,7 +110,7 @@
         <% let i=1 %>
         <% agendamentosFiltrados.forEach(agendamento=> { %>
         <div class="row w-100 px-5 mx-auto mt-4 d-flex align-items-center flex-nowrap">
-            <div class="col text-start overflow-hidden">
+            <div class="col-10 col-md-8 text-start overflow-hidden">
                 <span class="fw-light text-white fs-5 pe-2 truncate">
                     <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) %>" data-bs-placement="right">
                         <%= i++ %> - <%= agendamento.nomesAgendamento %>
