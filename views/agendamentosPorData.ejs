@@ -57,19 +57,26 @@
                     <img src="/img/maisThermas.webp" class="logo-header">
                 </div>
                 <div class="col-12 col-lg-4 text-center">
-                    <p class="fs-3 mb-0 text-white ff-sora fw-light">
+                    <p class="fs-3 mb-1 text-white ff-sora fw-light">
                         <%=agendamentosFiltrados.length%>
                         <%=agendamentosFiltrados.length===1 ? 'AGENDAMENTO' : 'AGENDAMENTOS' %>
                     </p>
                     <% if (!dataInicioBR || dataFimBR === dataInicioBR) { %>
-                        <p class="dataAgendamento fs-6 fw-light">
+                        
+                        <p class="dataAgendamento fs-6 fw-light mb-2">
+                            <i class="bi bi-calendar-event text-white me-2"></i>
                             <%=dataInicioBR%>
                         </p>
                     <% } else { %>
-                        <p class="dataAgendamento fs-6 fw-light">
+                        <p class="dataAgendamento fs-6 fw-light mb-1">
+                            <i class="bi bi-calendar-event text-white me-2"></i>
                             <%= dataInicioBR %> à <%=dataFimBR%>
                         </p>
                     <% } %>
+                    <p class="text-white fs-6 ff-sora fw-lighter">
+                        <%= clientesAtendidos.length %>
+                        <%= clientesAtendidos.length === 1 ? 'ATENDIMENTO' : 'ATENDIMENTOS' %>
+                    </p>
                 </div>
                 <div class="col-12 col-lg-3 text-center">
                     <div class="dropdown">
@@ -112,7 +119,7 @@
         <div class="row w-100 px-5 mx-auto mt-4 d-flex align-items-center flex-nowrap">
             <div class="col text-start overflow-hidden">
                 <span class="fw-light text-white fs-5 pe-2 truncate">
-                    <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) %>" data-bs-placement="right">
+                    <span class="pe-2 <%= agendamento.statusAgendamento === 'atendido' ? 'atendido' : '' %>" data-bs-toggle="tooltip" data-bs-title="<%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) %>" data-bs-placement="right">
                         <%= i++ %> - <%= agendamento.nomesAgendamento %>
                     </span>
                 </span>
@@ -159,10 +166,22 @@
                         </li>
                         <!-- Marcar como atendido -->
                         <li>
-                            <a href="#" class="dropdown-item pb-2"
-                                onclick="copiarVoucher('<%=agendamento.voucher%>')">
-                                <i class="bi bi-check-lg fs-7 text-white me-1"></i>
-                                <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
+                            <a href="" class="dropdown-item pb-2">
+                                <% if (agendamento.statusAgendamento === '') { %>
+                                    <form action="/atendido" method="POST">
+                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                        <input type="hidden" name="atendido" value="atendido">
+                                        <i class="bi bi-check-lg fs-7 text-white me-1"></i>
+                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0">Marcar como atendido</button>
+                                    </form>
+                                <% } else { %>
+                                    <form action="/atendido" method="POST">
+                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                        <input type="hidden" name="atendido" value="">
+                                        <i class="bi bi-x-lg fs-7 text-white me-1"></i>
+                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0">Remover atendimento</button>
+                                    </form>
+                                <% } %>
                             </a>
                         </li>
                     </ul>

@@ -59,7 +59,11 @@
                 <div class="col-12 col-lg-4 text-center">
                     <p class="fs-3 mb-0 text-white ff-sora fw-light">
                         <%=agendamentos.length%>
-                            <%=agendamentos.length===1 ? 'AGENDAMENTO' : 'AGENDAMENTOS' %>
+                        <%=agendamentos.length===1 ? 'AGENDAMENTO' : 'AGENDAMENTOS' %>
+                    </p>
+                    <p class="text-white fs-6 ff-sora ff-lighter">
+                        <%= clientesAtendidos.length %>
+                        <%= clientesAtendidos.length === 1 ? 'ATENDIMENTO' : 'ATENDIMENTOS' %>
                     </p>
                     <p class="dataAgendamento fs-6 fw-light">
                         <%= dataAtualBR %>
@@ -100,7 +104,7 @@
             <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center">
                 <div class="col-10 col-md-8 text-start overflow-hidden">
                         <span class="fw-light text-white fs-5 pe-2 truncate">
-                            <span class="pe-2" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
+                            <span class="pe-2 <%= agendamento.statusAgendamento === 'atendido' ? 'atendido' : '' %>" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
                                 <%= i++ %> - <%= agendamento.nomesAgendamento %>
                             </span>
                         </span>
@@ -144,8 +148,21 @@
                             <!-- Marcar como atendido -->
                             <li>
                                 <a href="#" class="dropdown-item pb-2">
-                                    <i class="bi bi-check-lg fs-7 text-white me-1"></i>
-                                    <span class="fs-7 text-white ff-sora fw-light">Marcar como atendido</span>
+                                    <% if (agendamento.statusAgendamento === '') { %>
+                                        <form action="/atendido" method="POST">
+                                            <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                            <input type="hidden" name="atendido" value="atendido">
+                                            <i class="bi bi-check-lg fs-7 text-white me-1"></i>
+                                            <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0">Marcar como atendido</button>
+                                        </form>
+                                    <% } else { %>
+                                        <form action="/atendido" method="POST">
+                                            <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                            <input type="hidden" name="atendido" value="">
+                                            <i class="bi bi-x-lg fs-7 text-white me-1"></i>
+                                            <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0">Remover atendimento</button>
+                                        </form>
+                                    <% } %>
                                 </a>
                             </li>
                         </ul>

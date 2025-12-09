@@ -37,10 +37,36 @@ module.exports = {
         }
     },
 
+    atendido: async (req, res) => {
+        try {
+            const idAgendamento = req.body.idAgendamento;
+            const statusAgendamento = req.body.atendido;
+
+            await Agendamento.update({ statusAgendamento }, {
+                where: {
+                    id: idAgendamento
+                }
+            })
+
+            console.log('\n✅ O status do agendamento foi alterado!')
+            const returnTo = req.get('referer') || '/agendamentos';
+            return res.redirect(returnTo);
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    },
+
     agendamentos: async (req, res) => {
         let dataAtual = moment();
         let dataISO = dataAtual.format('YYYY-MM-DD');
         let dataAtualBR = dataAtual.format('DD/MM/YYYY');
+        let clientesAtendidos = await Agendamento.findAll({
+            where: {
+                statusAgendamento: 'atendido'
+            }
+        });
+
         try {
             const agendamentos = await Agendamento.findAll({
                 where: {
@@ -50,6 +76,7 @@ module.exports = {
             })
             return res.render('agendamentos', {
                 currentUrl: req.originalUrl,
+                clientesAtendidos,
                 agendamentos,
                 dataAtualBR
             })
@@ -61,6 +88,11 @@ module.exports = {
     filtrarAgendamentos: async (req, res) => {
         let dataAtual = moment();
         let dataISO = dataAtual.format('YYYY-MM-DD');
+        let clientesAtendidos = await Agendamento.findAll({
+            where: {
+                statusAgendamento: 'atendido'
+            }
+        });
 
         try {
             let { dataInicioFiltro, dataFimFiltro } = req.query;
@@ -94,6 +126,7 @@ module.exports = {
             return res.render('agendamentosPorData', {
                 currentUrl: req.originalUrl,
                 agendamentosFiltrados,
+                clientesAtendidos,
                 dataInicioBR,
                 dataFimBR
             })

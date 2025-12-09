@@ -34,6 +34,11 @@ const Agendamento = connection.define('agendamento', {
     telefone: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+
+    statusAgendamento: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 },
     {

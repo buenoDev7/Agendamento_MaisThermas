@@ -36,6 +36,16 @@ body::before {
     color: #e3e3e3;
 }
 
+.atendido {
+    color: #41c688 !important;
+    filter: blur(2px);
+    transition: all 250ms ease-in-out;
+}
+
+.atendido:hover {
+    filter: blur(0px) !important;
+}
+
 .truncate {
     display: block;
     min-width: 0;
