@@ -144,7 +144,7 @@
                             <!-- Marcar como atendido -->
                             <li>
                                 <a href="#" class="dropdown-item pb-2">
-                                    <% if (agendamento.statusAgendamento === '') { %>
+                                    <% if (agendamento.statusAgendamento === null) { %>
                                         <form action="/atendido" method="POST">
                                             <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
                                             <input type="hidden" name="atendido" value="atendido">
