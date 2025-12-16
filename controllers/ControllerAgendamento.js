@@ -21,7 +21,8 @@ module.exports = {
                 horarioAgendamento,
                 dataAgendamento,
                 voucher,
-                telefone
+                telefone,
+                statusAgendamento: 'não atendido'
             });
 
             // Renderiza o convite
