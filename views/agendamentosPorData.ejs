@@ -147,7 +147,7 @@
                         <!-- Copiar Telefone -->
                         <li>
                             <a href="#" class="dropdown-item pb-2"
-                                onclick="copiarTelefone('55<%=agendamento.telefone%>')">
+                                onclick="copiar('55<%=agendamento.telefone%>')">
                                 <i class="bi bi-telephone fs-7 text-white me-1"></i>
                                 <span class="fs-7 text-white ff-sora fw-light">Copiar Telefone</span>
                             </a>
@@ -155,7 +155,7 @@
                         <!-- Copiar Voucher -->
                         <li>
                             <a href="#" class="dropdown-item pb-2"
-                                onclick="copiarVoucher('<%=agendamento.voucher%>')">
+                                onclick="copiar('<%=agendamento.voucher%>')">
                                 <i class="bi bi-ticket fs-7 text-white me-1"></i>
                                 <span class="fs-7 text-white ff-sora fw-light">Copiar Voucher</span>
                             </a>
@@ -192,8 +192,8 @@
     <br><br><br><br>
     <script>
         // Copia o voucher para área de transferencia
-        function copiarVoucher(voucher) {
-            navigator.clipboard.writeText(voucher);
+        function copiar(string) {
+            navigator.clipboard.writeText(string);
         }
 
         // Exibe tooltips
