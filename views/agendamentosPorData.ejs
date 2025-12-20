@@ -146,15 +146,15 @@
                         </li>
                         <!-- Copiar Telefone -->
                         <li>
-                            <a href="#" class="dropdown-item pb-2"
+                            <button type="button" class="dropdown-item pb-2"
                                 onclick="copiar('55<%=agendamento.telefone%>')">
                                 <i class="bi bi-telephone fs-7 text-white me-1"></i>
                                 <span class="fs-7 text-white ff-sora fw-light">Copiar Telefone</span>
-                            </a>
+                        </button>
                         </li>
                         <!-- Copiar Voucher -->
                         <li>
-                            <a href="#" class="dropdown-item pb-2"
+                            <button type="button" class="dropdown-item pb-2"
                                 onclick="copiar('<%=agendamento.voucher%>')">
                                 <i class="bi bi-ticket fs-7 text-white me-1"></i>
                                 <span class="fs-7 text-white ff-sora fw-light">Copiar Voucher</span>
@@ -163,25 +163,25 @@
                        <!-- Marcar como atendido -->
                         <% if (agendamento.statusAgendamento === 'atendido') { %>
                             <li>
-                                <a href="#" class="dropdown-item pb-2">
-                                    <form action="/atendido" method="POST">
-                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
-                                        <input type="hidden" name="atendido" value="não atendido">
-                                        <i class="bi bi-x-lg fs-7 text-white me-1"></i>
-                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0">Remover atendimento</button>
-                                    </form>
-                                </a>
+                                <form action="/atendido" method="POST" class="dropdown-item pb-2 m-0">
+                                    <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                    <input type="hidden" name="atendido" value="não atendido">
+                                    <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0 p-0">
+                                        <i class="bi bi-x-lg me-1"></i>
+                                        Remover atendimento
+                                    </button>
+                                </form>
                             </li>
                         <% } else if (agendamento.statusAgendamento === 'não atendido') { %>
                             <li>
-                                <a href="#" class="dropdown-item pb-2">
-                                    <form action="/atendido" method="POST">
-                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
-                                        <input type="hidden" name="atendido" value="atendido">
-                                        <i class="bi bi-check-lg fs-7 text-white me-1"></i>
-                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0">Marcar como atendido</button>
-                                    </form>
-                                </a>
+                                <form action="/atendido" method="POST" class="dropdown-item pb-2 m-0">
+                                    <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                    <input type="hidden" name="atendido" value="atendido">
+                                    <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0 p-0">
+                                        <i class="bi bi-check-lg me-1"></i>
+                                        Marcar como atendido
+                                    </button>
+                                </form>
                             </li>
                         <% } %>
                 </div>
