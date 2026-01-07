@@ -20,8 +20,8 @@ router.post('/salvar_edicao', ControllerAgendamento.salvarEdicao);
 // > Deletar agendamento
 router.post('/del_agendamento', ControllerAgendamento.deletarAgendamento);
 
-// > Marcar como atendido
-router.post('/atendido', ControllerAgendamento.atendido);
+// > Muda status do agendamento
+router.post('/alterar_status', ControllerAgendamento.alterarStatus);
 
 // > View para agendamentos filtrados por data
 router.get('/filtrar_agendamentos', ControllerAgendamento.filtrarAgendamentos);

@@ -71,7 +71,7 @@
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li>
                                <div class="col-8 mx-auto text-center pt-2">
-                                 <span class="fs-5 text-white">
+                                <span class="fs-5 text-white">
                                     Filtrar agendamentos
                                 </span>
                                </div>
@@ -100,7 +100,7 @@
             <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center">
                 <div class="col-10 col-md-8 text-start overflow-hidden">
                         <span class="fw-light text-white fs-5 pe-2 truncate">
-                            <span class="pe-2 <%= agendamento.statusAgendamento === 'atendido' ? 'atendido' : '' %>" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
+                            <span class="pe-2 <%= agendamento.statusAgendamento === 'atendido' ? 'atendido' : agendamento.statusAgendamento === 'cutucado' ? 'cutucado' : agendamento.statusAgendamento === 'desistiu' ? 'desistiu' : '' %>" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
                                 <%= i++ %> - <%= agendamento.nomesAgendamento %>
                             </span>
                         </span>
@@ -135,26 +135,48 @@
                                 </button>
                             </li>
                             <!-- Marcar como atendido -->
-                            <% if (agendamento.statusAgendamento === 'atendido') { %>
+                            <% if (agendamento.statusAgendamento === 'não atendido'  || agendamento.statusAgendamento === 'cutucado' || agendamento.statusAgendamento === 'desistiu') { %>
                                 <li>
-                                    <form action="/atendido" method="POST" class="dropdown-item pb-2 m-0">
+                                    <form action="/alterar_status" method="POST" class="dropdown-item pb-2 m-0">
                                         <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
-                                        <input type="hidden" name="atendido" value="não atendido">
-                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0 p-0">
-                                            <i class="bi bi-x-lg me-1"></i>
-                                            Remover atendimento
-                                        </button>
-                                    </form>
-                                </li>
-                            <% } else if (agendamento.statusAgendamento === 'não atendido') { %>
-                                <li>
-                                    <form action="/atendido" method="POST" class="dropdown-item pb-2 m-0">
-                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
-                                        <input type="hidden" name="atendido" value="atendido">
+                                        <input type="hidden" name="status" value="atendido">
                                         <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0 p-0">
                                             <i class="bi bi-check-lg me-1"></i>
                                             Marcar como atendido
                                         </button>
+                                    </form>
+                                </li>
+                                <!-- Marcar como cutucado -->
+                                <li>
+                                    <form action="/alterar_status" method="POST" class="dropdown-item pb-2 m-0">
+                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                        <input type="hidden" name="status" value="cutucado">
+                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0 p-0">
+                                            <i class="bi bi-bell me-1"></i> 
+                                            Marcar como cutucado
+                                        </button>
+                                    </form>
+                                </li>
+                                <!-- Desistiu -->
+                                <li>
+                                    <form action="/alterar_status" method="POST" class="dropdown-item pb-2 m-0">
+                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                        <input type="hidden" name="status" value="desistiu">
+                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0 p-0">
+                                            <i class="bi bi-x-lg me-1"></i> 
+                                            Desistiu
+                                        </button>
+                                    </form>
+                                </li>
+                            <% } else if (agendamento.statusAgendamento === 'atendido') { %>
+                                <li>
+                                    <form action="/alterar_status" method="POST" class="dropdown-item pb-2 m-0">
+                                        <input type="hidden" name="idAgendamento" value="<%= agendamento.id %>">
+                                        <input type="hidden" name="status" value="não atendido">
+                                        <button type="submit" class="fs-7 text-white ff-sora fw-light bg-transparent border-0 p-0">
+                                            <i class="bi bi-x-lg me-1"></i>
+                                            Remover Atendimento
+                                        </button>                            
                                     </form>
                                 </li>
                             <% } %>

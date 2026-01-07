@@ -38,10 +38,10 @@ module.exports = {
         }
     },
 
-    atendido: async (req, res) => {
+    alterarStatus: async (req, res) => {
         try {
             const idAgendamento = req.body.idAgendamento;
-            const statusAgendamento = req.body.atendido;
+            const statusAgendamento = req.body.status;
 
             await Agendamento.update({ statusAgendamento }, {
                 where: {
