@@ -3,7 +3,7 @@ const router = express.Router();
 const ControllerAgendamento = require('../controllers/ControllerAgendamento');
 
 // > View para cadastro de informações do agendamento
-router.get('/cadastro', ControllerAgendamento.cadastro);
+router.get('/', ControllerAgendamento.cadastro);
 
 // > Rota POST para salvar agendamento no Banco de Dados
 router.post('/salvar_agendamento', ControllerAgendamento.salvar_agendamento);
