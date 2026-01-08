@@ -97,7 +97,7 @@
 
         <% let i = 1 %>
         <% agendamentos.forEach(agendamento => { %>
-            <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center">
+            <div class="row mt-4 mx-4 d-flex flex-row justify-content-evenly align-items-center flex-nowrap">
                 <div class="col-10 col-md-8 text-start overflow-hidden">
                         <span class="fw-light text-white fs-5 pe-2 truncate">
                             <span class="pe-2 <%= agendamento.statusAgendamento === 'atendido' ? 'atendido' : agendamento.statusAgendamento === 'cutucado' ? 'cutucado' : agendamento.statusAgendamento === 'desistiu' ? 'desistiu' : '' %>" data-bs-toggle="tooltip" data-bs-title="<%=agendamento.horarioAgendamento.slice(0, 5) %>" data-bs-placement="right">
