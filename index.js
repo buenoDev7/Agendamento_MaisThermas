@@ -1,3 +1,7 @@
+require('dotenv').config()
+
+process.env.TZ = 'America/Sao_Paulo';
+
 // Express.js
 const express = require('express');
 const app = express();
