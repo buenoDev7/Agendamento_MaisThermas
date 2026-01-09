@@ -10,31 +10,28 @@ html {
 }
 
 body {
-  min-height: 110vh;
-  overflow-x: hidden;
-  position: relative;
-  background: #333;  
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background: #333;
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: -80px;  
-  background-image: url('../img/wpp_ficha2.webp');
-  background-size: cover;
-  background-position: center;
-  filter: blur(4px) brightness(0.2);
-  z-index: -1;
+    content: "";
+    position: fixed;
+    inset: -80px;
+    background-image: url('../img/wpp_ficha2.webp');
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px) brightness(0.2);
+    z-index: -1;
 }
 
 .sidebar {
-    position: absolute;
-    bottom: 0px;
-    min-height: fit-content;
-    min-width: 100%;
-    padding: 0px 30px;
+    max-width: 95px;
+    min-height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     list-style: none;
     transition: all 250ms ease-in-out;
@@ -48,11 +45,16 @@ body::before {
         transform: translateX(-3px);
         filter: drop-shadow(4px 5px 6px #e3e3e3);
     }
-    
+
     li {
         transition: all 250ms ease;
     }
 }
+
+.sidebar:hover {
+    background-color: rgba(0, 0, 0, .2);
+}
+
 
 .mainCard {
     height: 100%;
@@ -183,4 +185,43 @@ footer {
     filter: drop-shadow(2px 3px 2px #000);
     position: relative;
     top: 50px;
+}
+
+@media (max-width: 480px) {
+    body {
+        min-height: 120vh;
+        overflow-x: hidden;
+        position: relative;
+        background: #333;
+    }
+
+    .sidebar {
+        position: absolute;
+        bottom: 0px;
+        min-width: 100%;
+        min-height: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        list-style: none;
+        transition: all 250ms ease-in-out;
+
+        a {
+            color: #b9b7b7;
+        }
+
+        a:hover {
+            color: #ffffff !important;
+            transform: translateX(-3px);
+            filter: drop-shadow(4px 5px 6px #e3e3e3);
+        }
+
+        li {
+            transition: all 250ms ease;
+        }
+
+        .sidebar:hover {
+            background: transparent;
+        }
+    }
 }
