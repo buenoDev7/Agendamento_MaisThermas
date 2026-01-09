@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  min-height: 140vh;
+  min-height: 110vh;
   overflow-x: hidden;
   position: relative;
   background: #333;  
