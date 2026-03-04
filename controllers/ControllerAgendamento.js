@@ -62,9 +62,10 @@ module.exports = {
         let dataAtual = moment();
         let dataISO = dataAtual.format('YYYY-MM-DD');
         let dataAtualBR = dataAtual.format('DD/MM/YYYY');
-        let clientesAtendidos = await Agendamento.findAll({
+        let clientesAtendidos = await Agendamento.count({
             where: {
-                statusAgendamento: 'atendido'
+                statusAgendamento: 'atendido',
+                dataAgendamento: dataISO
             }
         });
 
@@ -89,33 +90,37 @@ module.exports = {
     filtrarAgendamentos: async (req, res) => {
         let dataAtual = moment();
         let dataISO = dataAtual.format('YYYY-MM-DD');
-        let clientesAtendidos = await Agendamento.findAll({
-            where: {
-                statusAgendamento: 'atendido'
-            }
-        });
-
+        
         try {
             let { dataInicioFiltro, dataFimFiltro } = req.query;
-
+            
             // Se a dataInicio for vazia, assume como data atual
             if (!dataInicioFiltro) {
                 dataInicioFiltro = dataISO
             }
-
+            
             // Se a dataFim for vazia, assume como data atual
             if (!dataFimFiltro) {
                 dataFimFiltro = dataISO
             }
-
+            
             // Evita filtragem de dataFim menor que dataInicio. (Parâmentros invertidos na pesquisa)
             if (dataFimFiltro < dataInicioFiltro) {
                 throw new Error('\n❌ Erro ao filtrar agendamentos: A data fim não pode ser maior que a data de início')
             }
-
+            
             let dataInicioBR = moment(dataInicioFiltro).format('DD/MM/YYYY');
             let dataFimBR = moment(dataFimFiltro).format('DD/MM/YYYY');
-
+            
+            let clientesAtendidos = await Agendamento.count({
+                where: {
+                    statusAgendamento: 'atendido',
+                    dataAgendamento: {
+                        [Op.between]: [dataInicioFiltro, dataFimFiltro]
+                    }
+                }
+            });
+            
             const agendamentosFiltrados = await Agendamento.findAll({
                 where: {
                     dataAgendamento: {
