@@ -23,67 +23,67 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://www.thermas.com.br/shared/images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://www.thermas.com.br/shared/images/favicon/favicon-16x16.png">
 </head>
 
 <body>
     <ul class="sidebar py-5">
         <!-- Agendamentos -->
         <li>
-            <a href="/agendamentos" class="pe-3"
-                data-bs-toggle="tooltip" 
-                data-bs-title="Lista de Agendamentos" 
+            <a href="/agendamentos" class="pe-3" data-bs-toggle="tooltip" data-bs-title="Lista de Agendamentos"
                 data-bs-placement="right">
                 <i class="bi bi-list-task fs-4"></i>
             </a>
         </li>
-        
+
         <!-- Agendar -->
         <li>
-            <a href="/" class="pe-3"
-                data-bs-toggle="tooltip" 
-                data-bs-title="Criar Agendamento" 
+            <a href="/" class="pe-3" data-bs-toggle="tooltip" data-bs-title="Criar Agendamento"
                 data-bs-placement="right">
                 <i class="bi bi-plus-circle fs-4"></i>
             </a>
         </li>
-        
+
         <!-- FullScreen -->
         <li>
-            <a href="#" class="pe-3" onclick="fullscreen()"
-                data-bs-toggle="tooltip" 
-                data-bs-title="Tela Cheia" 
+            <a href="#" class="pe-3" onclick="fullscreen()" data-bs-toggle="tooltip" data-bs-title="Tela Cheia"
                 data-bs-placement="right">
                 <i class="bi bi-fullscreen fs-4"></i>
             </a>
-        </li>        
-        
+        </li>
+
         <!-- Enviar convite pro cliente -->
         <li>
-            <a href="https://wa.me/55<%=agendamento.telefone%>" target="_blank" class="pe-3"
-                data-bs-toggle="tooltip" 
-                data-bs-title="Enviar convite" 
-                data-bs-placement="right">
+            <a href="https://wa.me/55<%=agendamento.telefone%>" target="_blank" class="pe-3" data-bs-toggle="tooltip"
+                data-bs-title="Enviar convite" data-bs-placement="right">
                 <i class="bi bi-whatsapp fs-4"></i>
             </a>
-        </li>        
-        
+        </li>
+
         <!-- Login -->
         <li>
-            <a href="#" class="pe-3"
-            data-bs-toggle="tooltip" 
-            data-bs-title="Sessão" 
-            data-bs-placement="right">
-            <i class="bi bi-person fs-4"></i></a>
+            <a href="#" class="pe-3" data-bs-toggle="tooltip" data-bs-title="Sessão" data-bs-placement="right">
+                <i class="bi bi-person fs-4"></i></a>
         </li>
     </ul>
     <div class="container-fluid">
         <div class="row d-flex flex-row justify-content-center">
             <div class="col-12 col-sm-6 mainCard conviteYan" id="mainCard">
                 <div class="header">
-                    <h1>AGENDAMENTO</h1>
-                    <img src="/img/maisThermas.webp" alt="maisTermasLogo" class="logoHeader">
-                    <h3>CONVIDADOS</h3>
+                    <div class="linha">
+                        <span></span>
+                        <p class="fs-5">AGENDAMENTO</p>
+                        <span></span>
+                    </div>
+
+                    <img src="/img/maisThermas.webp" alt="logo" class="logoHeader">
+
+                    <div class="linha">
+                        <span></span>
+                        <p class="mt-2">CONVIDADOS</p>
+                        <span></span>
+                    </div>
                 </div>
 
                 <main>
@@ -98,52 +98,62 @@
                     </div>
                     <br><br>
                     <div class="bgInfo mb-auto">
-                        <span class="local mb-1">
-                            <span class="bold">Local</span>: Sala VIP
+                        <span class="local fw-lighter">
+                            <span class="fw-semibold">
+                                <i class="bi bi-geo-alt"></i>
+                                Local:
+                            </span> Sala VIP
                         </span>
-                        <br>
-                        <span class="data mb-1">
+                        <hr class="w-100 mx-auto text-secondary">
+                        <span class="data fw-lighter">
                             <% if (agendamento.horarioAgendamento==="" || agendamento.horarioAgendamento==null) { %>
-                                <span class="bold">Data:</span>
-                                <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %>
-                            <% } else { %>
-                                <span class="bold">Data e Horário:</span>
-                                    <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC' }) %> 
-                                        às <%= agendamento.horarioAgendamento.slice(0, 5)%>h
-                            <% } %>
+                                <span class="fw-semibold">Data:</span>
+                                <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{ timeZone: 'UTC'
+                                    }) %>
+                                    <% } else { %>
+                                        <span class="fw-semibold">
+                                            <i class="bi bi-calendar4-week"></i> Data e Horário:
+                                        </span>
+                                        <%= new Date(agendamento.dataAgendamento).toLocaleDateString('pt-BR',{
+                                            timeZone: 'UTC' }) %>
+                                            às <%= agendamento.horarioAgendamento.slice(0, 5)%>h
+                                                <% } %>
                         </span>
-                        <br>
-                        <span class="mb-1 promotor">
-                            <span class="bold" id="promotor">Promotor</span>: Yan Bueno
+                        <hr class="w-100 mx-auto text-secondary">
+                        <span class="promotor mb-1 fw-lighter">
+                            <span class="fw-semibold ff-sora" id="promotor">
+                                <i class="bi bi-person-fill"></i> Promotor:
+                            </span>
+                            Yan Bueno
                         </span>
                     </div>
                 </main>
 
                 <footer>
-                    <img src="/img/thermas-logo.png" alt="ThermasDeSaoPedro"
-                        class="logoThermas">
+                    <img src="/img/thermas-logo.png" alt="ThermasDeSaoPedro" class="logoThermas">
                 </footer>
             </div>
         </div>
-        <script>
-            // Exibição de Tooltips
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {trigger: 'hover'}))
+    </div>
+    <script>
+        // Exibição de Tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'hover' }))
 
-            // Função que muda a tela para fullScreen clicando no button
-            function fullscreen() {
-                if (document.fullscreenElement) {
-                    document.exitFullscreen();
-                } else {
-                    document.documentElement.requestFullscreen();
-                }
+        // Função que muda a tela para fullScreen clicando no button
+        function fullscreen() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                document.documentElement.requestFullscreen();
             }
+        }
 
-            // Permite Fullscreen com Double Click em qualquer lugar da tela
-            window.addEventListener('dblclick', ()=> {
-                fullscreen()
-            });
-        </script>
+        // Permite Fullscreen com Double Click em qualquer lugar da tela
+        window.addEventListener('dblclick', () => {
+            fullscreen()
+        });
+    </script>
 </body>
 
 </html>
